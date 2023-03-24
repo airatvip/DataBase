@@ -9,7 +9,7 @@ public interface EmployeeDAO {
 
     List<Employee> allEmployee();
 
-    void updateEmployee(int id, Employee employee);
+    void updateEmployee(Employee employee);
 
-    void deleteEmployee(int id);
+    void deleteEmployee(Employee employee);
 }

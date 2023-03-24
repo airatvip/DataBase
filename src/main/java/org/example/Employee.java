@@ -1,22 +1,28 @@
 package org.example;
 
-public class Employee {
-    private int id;
-    private String first_name;
-    private String last_name;
-    private String gender;
-    private int age;
-    private int city_id;
-    private City city;
+import javax.persistence.*;
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int city_id) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.gender = gender;
-        this.age = age;
-        this.city_id = city_id;
-    }
+@Entity
+@Table (name = "Employee")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column (name = "first_name")
+    private String first_name;
+
+    @Column(name = "last_name")
+    private String last_name;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column (name = "age")
+    private int age;
+
+    @Column(name = "city_id", nullable = true)
+    private Integer city_id;
 
     public Employee(String first_name, String last_name, String gender, int age, int city_id) {
         this.first_name = first_name;
@@ -26,13 +32,13 @@ public class Employee {
         this.city_id = city_id;
     }
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, City city) {
+    public Employee(int id, String first_name, String last_name, String gender, int age, int city_id) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
-        this.city = city;
+        this.city_id = city_id;
     }
 
     public Employee() {
@@ -86,13 +92,6 @@ public class Employee {
         this.city_id = city_id;
     }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public City getCity() {
-        return city;
-    }
 
     @Override
     public String toString() {
@@ -102,8 +101,7 @@ public class Employee {
                 ", last_name='" + last_name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", city_name=" + city + '\n' +
+                ", city_id=" + city_id +
                 '}';
     }
-
 }
