@@ -21,8 +21,12 @@ public class Employee {
     @Column (name = "age")
     private int age;
 
-    @Column(name = "city_id", nullable = true)
+    @Column(name = "city_id", nullable = true, insertable = false, updatable = false)
     private Integer city_id;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = true)
+    private City city;
 
     public Employee(String first_name, String last_name, String gender, int age, int city_id) {
         this.first_name = first_name;
@@ -39,6 +43,16 @@ public class Employee {
         this.gender = gender;
         this.age = age;
         this.city_id = city_id;
+    }
+
+    public Employee(int id, String first_name, String last_name, String gender, int age, Integer city_id, City city) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.age = age;
+        this.city_id = city_id;
+        this.city = city;
     }
 
     public Employee() {
@@ -92,7 +106,6 @@ public class Employee {
         this.city_id = city_id;
     }
 
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -102,6 +115,10 @@ public class Employee {
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
                 ", city_id=" + city_id +
+                ", city=" + city +
                 '}';
     }
+
+
+//
 }
